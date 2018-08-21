@@ -1,0 +1,136 @@
+body
+{
+    background-image: url(img/321079.jpg);
+    background-attachment: fixed;
+    background-size: 110% 120%;
+}
+#bigtitle1,#bigtitle1,#bigtitle2,#bigtitle3
+{
+    font-size: 4.3em;
+    color:#d7ca9f;
+    font-family: STKaiti;
+    /*font-weight: 900;*/
+}
+#title0
+{
+    text-align: center;
+    width: 1300px;
+    height: 80px;
+    font-size: 2em;
+    padding:0px 4px 20px 0px;
+}
+#canvas1,#record0
+{
+    display: inline-block;
+    vertical-align: top;
+}
+#show_menu
+{
+    position: fixed;
+    z-index: 2;
+}
+#show_menu_btn,#start_game
+{
+    width: 80px;
+    height: 30px;
+    background-color:#777ab0;
+    padding: 5px;
+    border-style: outset;
+    border-color:#777ab0;
+}
+#menu
+{
+    padding: 3em 0em 0em 3em;
+    display: block;
+    position: fixed;
+    left: 5px;
+    top: 70px;
+    width: 180px;
+    height: 470px;
+    background-color: #011D27;
+    opacity: 0.97;
+    /*background-size: cover;*/
+    box-shadow: 6px 6px 4px;
+    z-index: 2;
+}
+#menu_set
+{
+    padding: 0px 0px 0px 0.5em;
+}
+#canvas1
+{
+    margin: 0px 0px 0px 100px;
+    position: static;
+    width: 740px;
+    height: 600px;
+}
+#canvas
+{
+    position: absolute;
+   box-shadow: 6px 6px 3px 0px BLACK;
+    background-image: url(img/321490.jpg);
+    margin:0px 0px 5px 95px;
+    background-size: cover;
+}
+#record0
+{
+    position: static;
+    /*background-image: url(img/321079.jpg);*/
+    width: 300px;
+    height: 580px;
+    background-size: 100% 100%;
+    /*box-shadow: 6px 4px 4px;*/
+}
+#recored_set
+{
+    padding: 0em 0em 1em 0em;
+}
+li{
+    list-style: none;
+}
+.btn
+{
+    background-color:transparent;
+    border: 0;
+}
+#score1,#score2
+{
+    display: inline-block;
+    font-size: 4em;
+    font-family: STKaiti;
+    color: #7475b8;
+}
+#fenshubiao
+{
+    font-size: 2.5em;
+    color: coral;
+}
+#huihe
+{
+    color: aqua;
+    font-size: 2em;
+    padding: 1em 0em 0em 1.9em;
+}
+#huihe_btn
+{
+    color: #d7ca9f;
+    font-size: 1.5em;
+}
+#time_down0,#time_down1
+{
+    color: #fff7aa;
+    font-size: 1em;
+    display: inline;
+}
+#time_down
+{
+    color: #fff7aa;
+    font-size: 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+}
+#time_down_btn
+{
+    color: brown;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+}

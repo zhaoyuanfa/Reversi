@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>黑白棋</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+    <div id="show_menu">
+        <input id="start_game" type="button" value="开始游戏">
+        <br>
+        <input id="show_menu_btn" type="button" value="显示菜单">
+        <pre id="bigtitle"><pre id="bigtitle1">黑
+</pre><pre id="bigtitle2">    白</pre><pre id="bigtitle3">  棋</pre>
+    </div>
+    <div id="menu">
+        <h1 id="menu_set">设置</h1>
+            <ul id="menu1">
+                <li id="music">
+                    <h2>音效</h2>
+                    <input class="btn" id="music_button" type="button" value="开">
+                </li>
+                <li id="fir_piece">
+                    <h2>先手</h2>
+                    <input class="btn" id="but1" type="button" value="黑棋先行">
+                </li>
+            </ul>
+    </div>
+
+    <div id="canvas1">
+        <canvas id="canvas" width="578px" height="578px"></canvas>
+    </div>
+
+    <div id="record0">
+        <div id="huihe">
+            第<input class="btn" id="huihe_btn" type="button" value="1">回合
+        </div>
+        <div id="score_border">
+        <pre id="score1">黑 </pre><input class="btn" id="fenshubiao" type="button" value="2 ：2"><pre id="score2"> 白</pre>
+        </div>
+        <div id="time_down">
+            <pre id="time_down1" style="color:coral;font-size:2em">黑方</pre>
+            <pre id="time_down0">剩余</pre>
+            <input id="time_down_btn" class="btn" type="button" value="10">
+            秒
+        </div>
+        
+    </div>
+
+   
+
+    <script src="main.js"></script>
+    
+</body>
+</html>
