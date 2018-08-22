@@ -40,6 +40,8 @@ var load_number=0;//提示步数数
 var start=0;
 var huiHe_change=0;
 var huiHe_number=1;
+var sigalPeople=2;
+var chooseColor=1;//1:黑 2：白
 var a=new Array(9);
 for(let i=0;i<a.length;i++)
 {
@@ -130,9 +132,195 @@ function removeTip()
 )*/
 
 //随机落子
-function suijidown()
+function x_y_downpiece(piece_x,piece_y)
 {
-    b
+    if(piece_x<1||piece_x>8||piece_y<1||piece_y>8)
+    {
+        return;
+    }
+    var ischange=0;
+    for(let i1=2;i1<load_number*2+2;i1+=2)
+    {
+        ////alert(b);
+        if(piece_x==b[i1][0]&&piece_y==b[i1][1])
+        {
+            ////alert("999");
+            if(piece_x==b[i1-1][0])
+            {
+            if(piece_y<b[i1-1][1])
+            {
+                for(let i2=piece_y;i2<b[i1-1][1]+1;i2++)
+                {
+                        aa[piece_x][i2]=me;
+                        ischange++;
+                }
+            }
+            if(piece_y>b[i1-1][1])
+            {
+                for(let i2=piece_y;i2>b[i1-1][1]-1;i2--)
+                {
+                        aa[piece_x][i2]=me;
+                        ischange++;
+                }
+            }
+            }
+            if(piece_y==b[i1-1][1])
+            {
+            if(piece_x<b[i1-1][0])
+            {
+                for(let i2=piece_x;i2<b[i1-1][0]+1;i2++)
+                {
+                        aa[i2][piece_y]=me;
+                        ischange++;
+                }
+            }
+            if(piece_x>b[i1-1][0])
+            {
+                for(let i2=piece_x;i2>b[i1-1][0]-1;i2--)
+                {
+                        aa[i2][piece_y]=me;
+                        ischange++;
+                }
+            }
+            }
+            if(piece_x!=b[i1-1][0]&&piece_y!=b[i1-1][1])
+            {
+                if(piece_x>b[i1-1][0]&&piece_y>b[i1-1][1])
+                {
+                    for(let p=b[i1-1][0];p<piece_x+1;p++)
+                    {
+                        q=b[i1-1][1]+(p-b[i1-1][0]);
+                        aa[p][q]=me;
+                        ischange++;
+                    }
+                }
+                if(piece_x<b[i1-1][0]&&piece_y<b[i1-1][1])
+                {
+                    for(let p=b[i1-1][0];p>piece_x-1;p--)
+                    {
+                        q=b[i1-1][1]+(p-b[i1-1][0]);
+                        aa[p][q]=me;
+                        ischange++;
+                    }
+                }
+                if(piece_x>b[i1-1][0]&&piece_y<b[i1-1][1])
+                {
+                    for(let p=b[i1-1][0];p<piece_x+1;p++)
+                    {
+                        q=b[i1-1][1]-(p-b[i1-1][0]);
+                        aa[p][q]=me;
+                        ischange++;
+                    }
+                }
+                if(piece_x<b[i1-1][0]&&piece_y>b[i1-1][1])
+                {
+                    for(let p=b[i1-1][0];p>piece_x-1;p--)
+                    {
+                        q=b[i1-1][1]-(p-b[i1-1][0]);
+                        aa[p][q]=me;
+                        ischange++;
+                    }
+                }
+            }
+            b[i1][0]=0;
+            b[i1][1]=0;
+        }
+    }
+    
+        //棋局有变化
+        if(ischange)
+        {
+            for(let m=1;m<9;m++)
+            {
+                for(let n=1;n<9;n++)
+                {
+                    if(aa[m][n]==me)
+                    {
+                        drawpiece(n,m,0);
+                    }
+                }
+            }
+            me=!me;
+            removeTip();
+            //alert(load_number);
+            searchAllLoad()
+            huiHe_change++;
+            //alert(load_number);
+            tip();
+            //freshpiece();
+        }
+        
+        //计数黑白棋子，并显示
+        let hei=0;
+        let bai=0;
+        for(let ab=1;ab<9;ab++)
+        {
+            for(let ac=1;ac<9;ac++)
+            {
+                if(aa[ab][ac]==1)
+                {
+                    hei++;
+                }
+                if(aa[ab][ac]==0)
+                {
+                    bai++;
+                }
+            }
+        }
+        $("#fenshubiao").val(hei+" : "+bai);
+
+        //对手无路可走
+        if(load_number==0)
+        {
+            //改变立场
+            if(hei+bai<64)
+            {
+                if(me==1)
+                {
+                    alert("黑棋无路可走，该白棋走！");
+                }
+                if(me==0)
+                {
+                    alert("白棋无路可走，该黑棋走！");
+                }
+            }
+            me=!me;
+            searchAllLoad();
+            huiHe_change++;
+            tip();
+            //再次无路可走，可判别输赢
+            if(load_number==0)
+            {
+                if(hei>bai)
+                {
+                    alert("恭喜黑方获胜");
+                    return;
+                }
+                else
+                {
+                    if(hei<bai)
+                    {
+                        alert("恭喜白方获胜");
+                        return;
+                    }
+                    else{
+                        alert("平局");
+                        return;
+                    }
+                    
+                }
+            }
+        }
+
+        //改变回合数
+        if(huiHe_change==3)
+        {
+            huiHe_change=1;
+            huiHe_number++;
+            $("#huihe_btn").val(huiHe_number);
+        }
+
+        action_1();
 }
 
 //画最初的四个子
@@ -172,27 +360,176 @@ function freshpiece()
     }
 }
 
-//落子
-//function downPiece()
 
-    searchAllLoad();
-    huiHe_change++;
-    tip();
+//系统走法
+function randomDown1()
+{
+    var x=b[2][0];
+    var y=b[2][1];
+    x_y_downpiece(x,y);
+}
+
+function randomDown2()
+{
+    var bb=new Array(load_number*2+2);
+    bb[0]=0;
+    for(let i0=2;i0<load_number*2+2;i0+=2)
+    {
+        ischange=0;
+        let piece_x=b[i0][0];
+        let piece_y=b[i0][1];
+        for(let i1=2;i1<load_number*2+2;i1+=2)
+        {
+            ////alert(b);
+            if(piece_x==b[i1][0]&&piece_y==b[i1][1])
+            {
+                ////alert("999");
+                if(piece_x==b[i1-1][0])
+                {
+                    if(piece_y<b[i1-1][1])
+                    {
+                        for(let i2=piece_y;i2<b[i1-1][1]+1;i2++)
+                        {
+                               
+                                ischange++;
+                        }
+                    }
+                    if(piece_y>b[i1-1][1])
+                    {
+                        for(let i2=piece_y;i2>b[i1-1][1]-1;i2--)
+                        {
+                               
+                                ischange++;
+                        }
+                    }
+                }
+                if(piece_y==b[i1-1][1])
+                {
+                    if(piece_x<b[i1-1][0])
+                    {
+                        for(let i2=piece_x;i2<b[i1-1][0]+1;i2++)
+                        {
+                                
+                                ischange++;
+                        }
+                    }
+                    if(piece_x>b[i1-1][0])
+                    {
+                        for(let i2=piece_x;i2>b[i1-1][0]-1;i2--)
+                        {
+                               
+                                ischange++;
+                        }
+                    }
+                }
+                if(piece_x!=b[i1-1][0]&&piece_y!=b[i1-1][1])
+                {
+                    if(piece_x>b[i1-1][0]&&piece_y>b[i1-1][1])
+                    {
+                        for(let p=b[i1-1][0];p<piece_x+1;p++)
+                        {
+                            q=b[i1-1][1]+(p-b[i1-1][0]);
+                            
+                            ischange++;
+                        }
+                    }
+                    if(piece_x<b[i1-1][0]&&piece_y<b[i1-1][1])
+                    {
+                        for(let p=b[i1-1][0];p>piece_x-1;p--)
+                        {
+                            q=b[i1-1][1]+(p-b[i1-1][0]);
+                            
+                            ischange++;
+                        }
+                    }
+                    if(piece_x>b[i1-1][0]&&piece_y<b[i1-1][1])
+                    {
+                        for(let p=b[i1-1][0];p<piece_x+1;p++)
+                        {
+                            q=b[i1-1][1]-(p-b[i1-1][0]);
+                            
+                            ischange++;
+                        }
+                    }
+                    if(piece_x<b[i1-1][0]&&piece_y>b[i1-1][1])
+                    {
+                        for(let p=b[i1-1][0];p>piece_x-1;p--)
+                        {
+                            q=b[i1-1][1]-(p-b[i1-1][0]);
+                            
+                            ischange++;
+                        }
+                    }
+                }
+            }
+        }
+        bb[i0]=ischange;
+    }
+    var max=0;
+    for(let i=2;i<load_number*2+2;i+=2)
+    {
+        if(bb[i]>bb[max])
+        {
+            max=i;
+        }
+    }
+    var x=b[max][0];
+    var y=b[max][1];
+    x_y_downpiece(x,y);
+}
+
+
+//单人模式
+function sigalMode()
+{
+    switch(sigalPeople)
+    {
+        case 0:break;
+        case 1:
+        {
+            if(chooseColor==me)
+            {
+                randomDown1();
+            }
+            break;
+        }
+        case 2:
+        {
+            if(chooseColor==me)
+            {
+                randomDown2();
+            }
+            break;
+        }
+    }
+}
+
     function action_1()
     {
         if(me==1)
         {
             $("#score1").css({"font-size":"4em","color": "coral"})
             $("#score2").css({"font-size":"3em","color": "#00ffff"})
+            $("#time_down1").text("黑方");
         }
         else
         {
             $("#score1").css({"font-size":"3em","color": "#00ffff"})
             $("#score2").css({"font-size":"4em","color": "coral"})
+            $("#time_down1").text("白方");
         }
     }
-    action_1();
+
+//落子
+//function downPiece()
+
+    searchAllLoad();
+    huiHe_change++;
+    tip();
     
+    action_1();
+
+    sigalMode();
     canvas.onclick=(e)=>
     {
         ////alert("666");
@@ -219,12 +556,11 @@ function freshpiece()
         var changeij=i;
         i=j;
         j=changeij;
-        for(let i1=2;i1<load_number*2+2;i1+=2)
+        /*for(let i1=2;i1<load_number*2+2;i1+=2)
         {
             ////alert(b);
             if(i==b[i1][0]&&j==b[i1][1])
             {
-
                 ////alert("999");
                 if(i==b[i1-1][0])
                 {
@@ -401,7 +737,11 @@ function freshpiece()
             $("#huihe_btn").val(huiHe_number);
         }
 
-        action_1();
+        action_1();*/
+            
+        x_y_downpiece(i,j);
+
+        sigalMode();
     }
 
 
@@ -435,7 +775,7 @@ $("#music_button").click
             ////////alert($("#music_button").val());
             $("#but1").val("白棋先行"); 
             me=0;
-            $("#time_down0").text("白方");
+           action_1();
             removeTip();
             searchAllLoad();
             huiHe_change++;
@@ -445,7 +785,7 @@ $("#music_button").click
         {
              $("#but1").val("黑棋先行");
              me=1;
-             $("#time_down0").text("黑方");
+             action_1();
              removeTip();
              searchAllLoad();
             huiHe_change++;
