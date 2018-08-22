@@ -41,7 +41,7 @@ var start=0;
 var huiHe_change=0;
 var huiHe_number=1;
 var sigalPeople=2;
-var chooseColor=1;//1:黑 2：白
+var chooseColor=1;//1:黑 0：白
 var a=new Array(9);
 for(let i=0;i<a.length;i++)
 {
@@ -109,27 +109,6 @@ function removeTip()
         context.clearRect(51+(b[p][1]-1)*70*0.85+4.25,51+(b[p][0]-1)*70*0.85+4.25,51,51);
     }
 }
-
-//落子
-/*$("#canvas").click
-(
-    function downpiece(e)
-    {
-       
-        //let e = event || window.event;
-        let x=e.offsetX;
-        let y=e.offsetY;
-        if(x<=60||x>=620||y<=60||y>=620)
-        {
-            ////alert("hello");
-            return;
-        }
-        let i=Math.floor((x-60)/70+1);
-        let j=Math.floor((y-60)/70+1);
-        drawpiece(i,j);
-        me=!me;
-    }
-)*/
 
 //随机落子
 function x_y_downpiece(piece_x,piece_y)
@@ -288,6 +267,7 @@ function x_y_downpiece(piece_x,piece_y)
             searchAllLoad();
             huiHe_change++;
             tip();
+            sigalMode();
             //再次无路可走，可判别输赢
             if(load_number==0)
             {
@@ -478,7 +458,6 @@ function randomDown2()
     x_y_downpiece(x,y);
 }
 
-
 //单人模式
 function sigalMode()
 {
@@ -504,32 +483,57 @@ function sigalMode()
     }
 }
 
-    function action_1()
+function action_1()
+{
+    if(me==1)
     {
-        if(me==1)
-        {
-            $("#score1").css({"font-size":"4em","color": "coral"})
-            $("#score2").css({"font-size":"3em","color": "#00ffff"})
-            $("#time_down1").text("黑方");
-        }
-        else
-        {
-            $("#score1").css({"font-size":"3em","color": "#00ffff"})
-            $("#score2").css({"font-size":"4em","color": "coral"})
-            $("#time_down1").text("白方");
-        }
+        $("#score1").css({"font-size":"4em","color": "coral"})
+        $("#score2").css({"font-size":"3em","color": "#00ffff"})
+        $("#time_down1").text("黑方");
     }
+    else
+    {
+        $("#score1").css({"font-size":"3em","color": "#00ffff"})
+        $("#score2").css({"font-size":"4em","color": "coral"})
+        $("#time_down1").text("白方");
+    }
+}
 
 //落子
 //function downPiece()
+$("#start_game").click(
+    function head()
+    {
+        if($("#start_game").val()=="开始游戏")
+        {
+            $("#start_game").val("重开一局");
+            searchAllLoad();
+            huiHe_change++;
+            tip();
+            
+            action_1();
 
-    searchAllLoad();
-    huiHe_change++;
-    tip();
-    
-    action_1();
-
-    sigalMode();
+            sigalMode();
+        }
+        else
+        {
+            $("#start_game").val("开始游戏");
+            for(let i=1;i<9;i++)
+            {
+                for(let j=1;j<9;j++)
+                {
+                    aa[i][j]==2;
+                    //alert("hieuhdv");
+                    context.clearRect(51+(i-1)*70*0.85+4,51+(j-1)*70*0.85+4,52,52);
+                }
+            }
+            initpiece();
+            huiHe_change=0;
+            huiHe_number=1;
+            action_1();
+        }
+    }
+)
     canvas.onclick=(e)=>
     {
         ////alert("666");
@@ -1007,56 +1011,3 @@ function tip()
         //////alert("666");
     }
 }
-
-//主函数
-function main()
-{
-    if(start==0)
-    {
-        //////alert("请按开始按钮开始！");
-        return;
-    }
-    else
-    {
-        //////alert(a[4][4]);
-        initpiece();
-        //////alert(a[4][4]);
-       // while(1)
-        {
-            searchAllLoad();
-            //////alert(load_number);
-            //////alert("999");
-            //////alert(b);
-            tip();
-            //////alert("hhhhh");
-            //downPiece();
-            //freshpiece();
-            if(start==0)
-            {
-                //////alert("tuichu");
-                return;
-            }
-        }
-    }
-}
-
-$("#start_game").click
-(
-    function startGame()
-    {
-        if(($("#start_game").val())=="开始游戏" )
-        {
-            $("#start_game").val("结束游戏");
-            start=1;
-        }
-        else
-        {
-            $("#start_game").val("开始游戏");
-            start=0;
-        }
-        
-    }
-
-)
-
-
