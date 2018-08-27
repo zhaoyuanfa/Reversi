@@ -7,7 +7,7 @@
     <title>黑白棋</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src=",/jquery-3.3.1.min.js"></script>
+    <script src="./jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
@@ -15,26 +15,43 @@
     <div id="show_menu">
         <input id="start_game" type="button" value="开始游戏">
         <br>
-        <input id="show_menu_btn" type="button" value="显示菜单">
-        <pre id="bigtitle"><pre id="bigtitle1">黑
-</pre>
-        <pre id="bigtitle2">    白</pre>
-        <pre id="bigtitle3">  棋</pre></pre>
+        <input id="show_menu_btn" type="button" value="设置">
+        <pre id="bigtitle"><pre id="bigtitle1">黑</pre><pre id="bigtitle2">    白</pre><pre id="bigtitle3">  棋</pre></pre>
     </div>
     <div id="menu">
-        <h1 id="menu_set">设置</h1>
-        <ul id="menu1">
-            <li id="music">
-                <h2>音效</h2>
-                <input class="btn" id="music_button" type="button" value="开">
-            </li>
-            <li id="fir_piece">
-                <h2>我的棋色</h2>
-                <input class="btn" id="but2" type="button" value="黑色">
-                <h2>先手</h2>
-                <input class="btn" id="but1" type="button" value="黑棋先行">
-            </li>
-        </ul>
+        <div class="bg bg-blur"></div>
+        <div class="content content-front">
+            <h2 id="menu_set">设置</h2>
+            <hr style="width:10em;height: 0.5px;border: none;border-top: 0.5px solid rgb(168, 157, 157);">
+            <ul id="menu1">
+                <li id="music">
+                    <h3>音效</h3>
+                    <input class="btn_start" id="music_button" type="button" value="开">
+                    <input class="btn_start1" id="music_button1" type="button" value="关">
+                </li>
+                <li id="fir_piece">
+                    <h3>我的棋色</h3>
+                    <input class="btn_start" id="color_but1" type="button" value="黑色">
+                    <input class="btn_start1" id="color_but2" type="button" value="白色">
+                <li>
+                    <h3>先手</h3>
+                    <input class="btn_start" id="but1" type="button" value="黑棋先行">
+                    <input class="btn_start1" id="but2" type="button" value="白棋先行">
+                </li>    
+                <li>
+                    <h3>单人模式</h3>
+                    <input class="btn_start1" id="but3" type="button" value="是">
+                    <input class="btn_start" id="but4" type="button" value="否">
+                </li>
+                <li>
+                    <h3>难度</h3>
+                    <input class="btn_start" id="difficulty1" type="button" value="简单">
+                    <input class="btn_start1" id="difficulty2" type="button" value="中等">
+                </li>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 
     <div id="canvas1">
@@ -46,8 +63,7 @@
     </script>
     <div id="record0">
         <div id="huihe">
-            第
-            <input class="btn" id="huihe_btn" type="button" value="1">回合
+            第<input class="btn" id="huihe_btn" type="button" value="1">回合
         </div>
         <div id="score_border">
             <pre id="score1">黑 </pre>

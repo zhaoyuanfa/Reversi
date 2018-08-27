@@ -40,6 +40,7 @@ var huiHe_number = 1;
 var sigalPeople = 0;
 var chooseColor = 1; //1:黑 0：白
 var c = 0;
+var t;
 
 var a = new Array(9);
 for (let i = 0; i < a.length; i++) {
@@ -195,6 +196,8 @@ function x_y_downpiece(piece_x, piece_y) {
         tip();
         //freshpiece();
         c = 0;
+        clearTimeout(t);
+        c = 0;
         timedown();
     } else {
         if (load_number != 0) {
@@ -226,10 +229,14 @@ function x_y_downpiece(piece_x, piece_y) {
             if (me == 1) {
                 alert("黑棋无路可走，该白棋走！");
                 c = 0;
+                clearTimeout(t);
+                c = 0;
                 timedown();
             }
             if (me == 0) {
                 alert("白棋无路可走，该黑棋走！");
+                c = 0;
+                clearTimeout(t);
                 c = 0;
                 timedown();
             }
@@ -238,23 +245,25 @@ function x_y_downpiece(piece_x, piece_y) {
         searchAllLoad();
         huiHe_change++;
         tip();
-        sigalMode();
         //再次无路可走，可判别输赢
         if (load_number == 0) {
             if (hei > bai) {
                 alert("恭喜黑方获胜");
+                clearTimeout(t);
                 return;
             } else {
                 if (hei < bai) {
                     alert("恭喜白方获胜");
+                    clearTimeout(t);
                     return;
                 } else {
                     alert("平局");
+                    clearTimeout(t);
                     return;
                 }
-
             }
         }
+        sigalMode();
     }
     //改变回合数
     if (huiHe_change == 3) {
@@ -264,6 +273,7 @@ function x_y_downpiece(piece_x, piece_y) {
     }
     //改变计数器等
     action_1();
+    sigalMode();
 }
 
 //画最初的四个子
@@ -354,7 +364,6 @@ function randomDown2() {
                     if (piece_x > b[i1 - 1][0] && piece_y < b[i1 - 1][1]) {
                         for (let p = b[i1 - 1][0]; p < piece_x + 1; p++) {
                             q = b[i1 - 1][1] - (p - b[i1 - 1][0]);
-
                             ischange++;
                         }
                     }
@@ -387,14 +396,14 @@ function sigalMode() {
             break;
         case 1:
             {
-                if (chooseColor == me) {
+                if (chooseColor != me) {
                     randomDown1();
                 }
                 break;
             }
         case 2:
             {
-                if (chooseColor == me) {
+                if (chooseColor != me) {
                     randomDown2();
                 }
                 break;
@@ -431,7 +440,6 @@ function timedown() {
     /*for(let t=0;t<s;t++){
     var c = setTimeout($("#time_down_btn").val(10-t-1),(t+1)*10000);
     }*/
-    var t;
     /*if($("#canvas").click()){
         alert("ewefwvvws");
     }*/
@@ -451,6 +459,12 @@ function timedown() {
 //function downPiece()
 $("#start_game").click(
     function head() {
+        if($("but1").val()=="黑棋先行"){
+            me=1;
+        }
+        else{
+            me=0;
+        }
         if ($("#start_game").val() == "开始游戏") {
             $("#start_game").val("重开一局");
             start = 1;
@@ -459,10 +473,16 @@ $("#start_game").click(
             huiHe_change++;
             tip();
             sigalMode();
-            timedown();
+            if(sigalPeople==0||chooseColor==me){
+                c=0;
+                timedown();
+            }
         } else {
             $("#start_game").val("开始游戏");
             start = 0;
+            c = 0;
+            clearTimeout(t);
+            $("#time_down_btn").val("10");
             $("#fenshubiao").val("2 : 2");
             for (let i = 1; i < 9; i++) {
                 for (let j = 1; j < 9; j++) {
@@ -508,7 +528,6 @@ canvas.onclick = (e) => {
     i = j;
     j = changeij;
     x_y_downpiece(i, j);
-    sigalMode();
 }
 
 
@@ -516,55 +535,271 @@ canvas.onclick = (e) => {
 //音效开关
 $("#music_button").click(
     function music_on() {
-        if ($("#music_button").val() == "开") {
-            ////////alert($("#music_button").val());
-            $("#music_button").val("关");
-        } else {
-            $("#music_button").val("开");
-        }
+        $("#music_button").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        $("#music_button1").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+$("#music_button1").click(
+    function music_on() {
+        $("#music_button1").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        $("#music_button").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
     }
 )
 
 //先手设置
-//function setFir()
-//{
 $("#but1").click(
-    function fir_piece() {
-        if ($("#but1").val() == "黑棋先行") {
-            ////////alert($("#music_button").val());
-            $("#but1").val("白棋先行");
-            me = 0;
-            action_1();
-            removeTip();
-            searchAllLoad();
-            huiHe_change++;
-            tip();
-        } else {
-            $("#but1").val("黑棋先行");
-            me = 1;
-            action_1();
-            removeTip();
-            searchAllLoad();
-            huiHe_change++;
-            tip();
-        }
+    function music_on() {
+        $("#but1").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        $("#but2").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+        me = 1;
+        action_1();
+        removeTip();
+        searchAllLoad();
+        huiHe_change++;
+        tip();
     }
 )
-//}
+$("#but2").click(
+    function music_on() {
+        $("#but2").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        $("#but1").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+        me = 0;
+        action_1();
+        removeTip();
+        searchAllLoad();
+        huiHe_change++;
+        tip();
+    }
+)
 
+
+//选择自己的棋色
+$("#color_but2").click(
+    function music_on() {
+        $("#color_but2").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        chooseColor=0;
+        $("#color_but1").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+
+$("#color_but1").click(
+    function music_on() {
+        $("#color_but1").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green",
+        } );
+        chooseColor=1;
+        $("#color_but2").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+
+
+//单人模式
+$("#but4").click(
+    function music_on() {
+        $("#but4").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        sigalPeople=0;
+        $("#but3").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+$("#but3").click(
+    function music_on() {
+        $("#but3").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        sigalPeople=1;
+        $("#but4").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+
+$("#difficulty1").click(
+    function music_on() {
+        $("#difficulty1").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        sigalPeople=1;
+        $("#difficulty2").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
+$("#difficulty2").click(
+    function music_on() {
+        $("#difficulty2").css({
+            "color":"green",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border-width": "1px",
+            "border-color": "#3ac717",
+            "text-align": "center",
+            "box-shadow": "0 0 1px green"
+        } );
+        sigalPeople=2;
+        $("#difficulty1").css({
+            "color":"#e4d8d8",
+            "font-size": "1.1em",
+            "background-color": "transparent",
+            "border": "none",
+            //"border-color": "#3ac717",
+            "text-align": "center",
+            //"box-shadow": "0 0 1px green"
+        } );
+    }
+)
 
 //显示与隐藏菜单栏
 $("#show_menu_btn").click(
     function showmenu() {
-        if ($("#show_menu_btn").val() == "显示菜单") {
+        if ($("#show_menu_btn").val() == "设置") {
             $("#menu").show();
-            $("#show_menu_btn").val("隐藏菜单");
+            $("#show_menu_btn").val("隐藏设置");
         } else {
             $("#menu").hide();
-            $("#show_menu_btn").val("显示菜单");
+            $("#show_menu_btn").val("设置");
         }
     }
 )
+
+//收起菜单
+$("#menu").mouseleave(function () { 
+    $("#menu").hide();
+    $("#show_menu_btn").val("设置");
+});
 
 //寻求路径函数
 function searchLoad(x, y) {
