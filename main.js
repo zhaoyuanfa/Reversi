@@ -459,7 +459,8 @@ function timedown() {
 //function downPiece()
 $("#start_game").click(
     function head() {
-        if($("but1").val()=="黑棋先行"){
+        alert($("#but1").css('color'));
+        if($("#but1").css('color')=="rgb(0, 128, 0)"){
             me=1;
         }
         else{
