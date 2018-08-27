@@ -459,7 +459,6 @@ function timedown() {
 //function downPiece()
 $("#start_game").click(
     function head() {
-        alert($("#but1").css('color'));
         if($("#but1").css('color')=="rgb(0, 128, 0)"){
             me=1;
         }
