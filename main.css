@@ -1,5 +1,5 @@
 body {
-    background-image: url(img/321079.jpg);
+    background-image: url(./img/321079.jpg);
     background-attachment: fixed;
     background-size: 110% 120%;
 }
@@ -86,7 +86,7 @@ body {
 .content-front {
     position:absolute;
     padding: 0 0 0 0.5em;
-  }
+}
 
 .btn_start{
     color:green;
@@ -118,7 +118,7 @@ body {
 #canvas {
     position: absolute;
     box-shadow: 6px 6px 3px 0 BLACK;
-    background-image: url(img/321490.jpg);
+    background-image: url(./img/321490.jpg);
     margin: 20px 0 5px 95px;
     background-size: cover;
 }
@@ -131,7 +131,6 @@ body {
     background-size: 100% 100%;
     /*box-shadow: 6px 4px 4px;*/
 }
-
 #recored_set {
     padding: 0 0 1em 0;
 }

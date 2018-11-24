@@ -443,9 +443,9 @@ function timedown() {
     /*if($("#canvas").click()){
         alert("ewefwvvws");
     }*/
-    $("#time_down_btn").val(10 - c);
+    $("#time_down_btn").val(30 - c);
     c = c + 1;
-    if (c == 12) {
+    if (c == 32) {
         clearTimeout(t);
         c = 0;
         $("#time_down_btn").val("0");
@@ -482,7 +482,7 @@ $("#start_game").click(
             start = 0;
             c = 0;
             clearTimeout(t);
-            $("#time_down_btn").val("10");
+            $("#time_down_btn").val("30");
             $("#fenshubiao").val("2 : 2");
             for (let i = 1; i < 9; i++) {
                 for (let j = 1; j < 9; j++) {
