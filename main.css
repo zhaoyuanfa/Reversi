@@ -1,133 +1,133 @@
 body {
-    background-image: url(./img/321079.jpg);
+    background-image     : url(./img/321079.jpg);
     background-attachment: fixed;
-    background-size: 110% 120%;
+    background-size      : 110% 120%;
 }
 
 #bigtitle1,
 #bigtitle1,
 #bigtitle2,
 #bigtitle3 {
-    font-size: 4.3em;
-    color: #d7ca9f;
+    font-size  : 4.3em;
+    color      : #d7ca9f;
     font-family: STKaiti;
     /*font-weight: 900;*/
 }
 
 #title0 {
     text-align: center;
-    width: 1300px;
-    height: 80px;
-    font-size: 2em;
-    padding:0 4px 20px 0;
+    width     : 1300px;
+    height    : 80px;
+    font-size : 2em;
+    padding   : 0 4px 20px 0;
 }
 
 #canvas1,
 #record0 {
-    display: inline-block;
+    display       : inline-block;
     vertical-align: top;
 }
 
 #show_menu {
     position: fixed;
-    z-index: 2;
+    z-index : 2;
 }
 
 #show_menu_btn,
 #start_game {
-    width: 80px;
-    height: 30px;
+    width           : 80px;
+    height          : 30px;
     background-color: #777ab0;
-    padding: 5px;
-    border-style: outset;
-    border-color: #777ab0;
-    font-size: 1em;
+    padding         : 5px;
+    border-style    : outset;
+    border-color    : #777ab0;
+    font-size       : 1em;
 }
 
 #menu {
-    padding: 0;
-    display: block;
+    padding : 0;
+    display : block;
     position: fixed;
-    left: 5px;
-    top: 70px;
-    width: 180px;
-    height: 540px;
+    left    : 5px;
+    top     : 70px;
+    width   : 180px;
+    height  : 540px;
     /*opacity: 0.4;*/
     /*background-size: cover;*/
-    box-shadow: 0 0 15px #3ac717;
-    z-index: 2;
+    box-shadow  : 0 0 15px #3ac717;
+    z-index     : 2;
     border-color: rgb(80, 156, 150);
     border-width: 2px;
 }
 
 .bg {
-    background-color:rgb(0,0,0);
+    background-color: rgb(0,0,0);
     background-color: rgba(0, 0, 0, 0.9);
 }
 
 .bg-blur {
-    float: left;
-    width: 102%;
-    height: 102%;
-    background-repeat: no-repeat;
+    float              : left;
+    width              : 102%;
+    height             : 102%;
+    background-repeat  : no-repeat;
     background-position: center;
-    background-size: cover;
-    -webkit-filter: blur(8px);
-    -moz-filter: blur(8px);
-    -ms-filter: blur(8px);
-    filter: blur(8px);
+    background-size    : cover;
+    -webkit-filter     : blur(8px);
+    -moz-filter        : blur(8px);
+    -ms-filter         : blur(8px);
+    filter             : blur(8px);
 }
 
 .content {
-    color: #e4d8d8;
+    color      : #e4d8d8;
     font-weight: bold;
 }
 
 .content-front {
-    position:absolute;
-    padding: 0 0 0 0.5em;
+    position: absolute;
+    padding : 0 0 0 0.5em;
 }
 
 .btn_start{
-    color:green;
-    font-size: 1.1em;
+    color           : green;
+    font-size       : 1.1em;
     background-color: transparent;
-    border-width: 1px;
-    border-color: #3ac717;
-    text-align: center;
-    box-shadow: 0 0 1px green;
+    border-width    : 1px;
+    border-color    : #3ac717;
+    text-align      : center;
+    box-shadow      : 0 0 1px green;
 }
 
 .btn_start1{
-    color:#e4d8d8;
-    font-size: 1.1em;
+    color           : #e4d8d8;
+    font-size       : 1.1em;
     background-color: transparent;
-    border:none;
+    border          : none;
     /*border-color: #3ac717;*/
     text-align: center;
     /*box-shadow: 0 0 1px green;*/
 }
 
 #canvas1 {
-    margin: 0 0 0 100px;
+    margin  : 0 0 0 100px;
     position: static;
-    width: 740px;
-    height: 600px;
+    width   : 740px;
+    height  : 600px;
 }
 
 #canvas {
-    position: absolute;
-    box-shadow: 6px 6px 3px 0 BLACK;
+    position        : absolute;
+    box-shadow      : 6px 6px 3px 0 BLACK;
     background-image: url(./img/321490.jpg);
-    margin: 20px 0 5px 95px;
-    background-size: cover;
+    margin          : 20px 0 5px 95px;
+    background-size : cover;
 }
 
 #record0 {
     position: static;
     /*background-image: url(img/321079.jpg);*/
-    width: 300px;
-    height: 580px;
+    width          : 300px;
+    height         : 580px;
     background-size: 100% 100%;
     /*box-shadow: 6px 4px 4px;*/
 }
@@ -138,48 +138,48 @@ body {
 
 .btn {
     background-color: transparent;
-    border: 0;
+    border          : 0;
 }
 
 #score1,
 #score2 {
-    display: inline-block;
-    font-size: 4em;
+    display    : inline-block;
+    font-size  : 4em;
     font-family: STKaiti;
-    color: #7475b8;
+    color      : #7475b8;
 }
 
 #fenshubiao {
     font-size: 2.5em;
-    color: coral;
+    color    : coral;
 }
 
 #huihe {
-    color: aqua;
+    color    : aqua;
     font-size: 2em;
-    padding: 1em 0 0 1.9em;
+    padding  : 1em 0 0 1.9em;
 }
 
 #huihe_btn {
-    color: #d7ca9f;
+    color    : #d7ca9f;
     font-size: 1.5em;
 }
 
 #time_down0,
 #time_down1 {
-    color: #fff7aa;
+    color    : #fff7aa;
     font-size: 1em;
-    display: inline;
+    display  : inline;
 }
 
 #time_down {
-    color: #fff7aa;
-    font-size: 1.5em;
+    color      : #fff7aa;
+    font-size  : 1.5em;
     font-family: 'Courier New', Courier, monospace;
 }
 
 #time_down_btn {
-    color: brown;
-    font-size: 2em;
+    color      : brown;
+    font-size  : 2em;
     font-family: 'Courier New', Courier, monospace;
 }
